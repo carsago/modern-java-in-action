@@ -1,4 +1,4 @@
-package chap01.lambda;
+package part1.chap02.behavparam;
 
 public enum Color {
     GREEN,
