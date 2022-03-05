@@ -15,9 +15,6 @@ import static part1.chap02.behavparam.Color.RED;
 public class FilterLogic {
 
 
-    /**
-     * filter GreenApple
-     */
 
     public static List<Apple> filterGreenApple(List<Apple> inventory) {
         List<Apple> result = new ArrayList<>();
@@ -30,10 +27,6 @@ public class FilterLogic {
         return result;
     }
 
-
-    /**
-     * filter specific color apple
-     */
 
     public static List<Apple> filterAppleByColor(List<Apple> inventory, Color color) {
         List<Apple> result = new ArrayList<>();
@@ -104,8 +97,8 @@ public class FilterLogic {
          * Lambda를 통해 익명 클래스를 구현하자
          */
 
-        List<Apple> greenAndSpecificWeightApples = filterApples(inventory,
-                a -> GREEN.equals(a.getColor()) && a.getWeight() == 150);
+        List<Apple> redAndLightApplesByLambda = filterApples(inventory,
+                a -> RED.equals(a.getColor()) && a.getWeight() <= 120);
 
 
 
