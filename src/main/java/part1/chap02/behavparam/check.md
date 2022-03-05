@@ -177,7 +177,7 @@ List<Apple> redAndLightApples = filterApples(inventory, new ApplePredicate() {
 
 하지만 익명 클래스를 활용하는 것은 더 복잡한 코드속에서, 많은 파라미터가 주어진다면 이해하기 어려워진다.
 
-만약 lambda 문법을 사용해서 익명 클래스를 구현한다면 더욱 짧고 가독성 있는 코드를 사용할 수 있다.
+만약 JAVA8의 lambda 문법을 사용해서 익명 클래스를 구현한다면 더욱 짧고 가독성 있는 코드를 사용할 수 있다.
 
 ```java
 List<Apple> redAndLightApplesByLambda = filterApples(inventory,
@@ -185,6 +185,8 @@ List<Apple> redAndLightApplesByLambda = filterApples(inventory,
 ```
 
 위와 정확히 동일한 역할을 하는 코드이지만 훨씬 짧아졌다.
+
+Lambda에 관해선 chap03에서 더욱 깊게 다룰 예정이니 걱정하지 말자
 
 
 이제 마지막으로 기존에 사용하던 코드를 다형성을 활용해서 사용해보자
@@ -220,4 +222,7 @@ public interface Predicate<T> {
 }
 
 ```
+
+- 만약 클래스와 메소드에 generic을 활용하는 것이 이해가 가지 않는다면 다음 블로그를 참조하자.
+- https://devlog-wjdrbs96.tistory.com/201
 
