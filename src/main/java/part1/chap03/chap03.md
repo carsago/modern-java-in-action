@@ -55,6 +55,29 @@ inventory.sort(new Comparator<Apple>() {
 inventory.sort((a1,a2) -> a1.getWeight().compareTo(a2.getWeight));
 ```
 
+Comparator의 comarping 메소드를 통해 반복되는 부분을 축약할 수 있다
+(a1 ,a2 모두 같은 역할인데 반복됨)
+
+
+```java
+Comparator<Apple> c = Comparator.comparing(a -> a.getWeight());
+```
+
+
+```java
+inventory.sort(comparing(a ->  a.getWeight()));
+```
+
+### 4단계
+
+메소드 참조를 통해 더 코드를 간소화할 수 있다.
+
+```java
+inventory.sort(comparing(Apple::getWeight));
+```
+
+다음 부분을 더욱 공부해보자 
+
 
 
 
