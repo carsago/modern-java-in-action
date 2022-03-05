@@ -3,56 +3,58 @@
 ## Lambda를 통해 동작 파라미터를 활용해보자!
 
 
-다음 예는 파일을 열고 한 줄을 읽는 메소드다.
-
+Chap 3의 목표는 다음 코드를 이해하는 것이다.
 
 ```java
-public static String processFileV1() throws IOException {
-        try {
-            BufferedReader br = new BufferedReader(new FileReader("data.txt"));
-            return br.readLine();
-        } catch (IOException e) {
-            throw e;
-        }
-    }
+inventory.sort(comparing(Apple::getWeight));
 ```
 
-짜증나는 try - catch 문이 존재하지만 별 로직은 없다.
+지금은 잘 이해가 안가지만 한단계 한단계 이해해보자.
 
-파일을 열고 그저 한줄을 읽는다.
-
-그렇지만 2줄을 읽고 싶다면? 혹은 3줄을 .. 아니면 텍스트에서 무언가 다른 것을 추출하고 싶다면 어떻게 해야할까?
-
-chap02와 마찬가지로 동작 파라미터를 활용하면 간단하다.
 
 ```java
-@FunctionalInterface
-public interface BufferedReaderProcess {
-    String process(BufferedReader br) throws IOException;
-}
+void sort(Comparator<? super E> c)
 ```
 
-- @FunctionInterface는 단 하나의 추상메소드를 가져야만 사용가능하다.
+sort 메소드는 다음과 같이 함수형 인터페이스인 Comparator를 파라미터로 받는다.
 
+따라서 지금까지 배운 지식만으로도 간단하게 특정한 sort 조건을 만들 수 있다.
+
+### 1단계
+
+함수형 인터페이스에 대한 구현체를 통해 comparator를 사용해보자
 
 ```java
-public static String processFileV2(BufferedReaderProcess b) throws IOException {
-    try {
-        BufferedReader br = new BufferedReader(new FileReader("data.txt"));
-        return b.process(br);
-    } catch (IOException e) {
-        throw e;
+import part1.chap02.behavparam.Apple;
+
+public class AppleComparator implements Comparable<Apple> {
+    public int compare(Apple a1, Apple a2) {
+        return a1.getWeight().compareTo(a2.getWeight());
     }
 }
 
-public static void main(String[] args) throws IOException {
-    String oneLine = processFileV2(br -> br.readLine());
-    String twoLine = processFileV2(br -> br.readLine() + br.readLine());
-}
+inventory.sort(new AppleComparator());
 ```
 
-이제 process라는 로직을 통해 파일을 읽고 이에 적합한 값을 return 한다.
 
-원하는 바에 따라 이를 작성하기만 하면 된다.
+### 2 ~ 3 단계
+
+우리는 익명 클래스와 Lambda를 통해 이 코드를 더욱 간소화할 수 있는 방법을 배웠다.
+
+```java
+inventory.sort(new Comparator<Apple>() {
+     public int compare(Apple a1, Apple a2) {
+        return a1.getWeight().compareTo(a2.getWeight());
+    }
+});
+```
+
+람다로 더욱 축약해보자
+
+```java
+inventory.sort((a1,a2) -> a1.getWeight().compareTo(a2.getWeight));
+```
+
+
 
 

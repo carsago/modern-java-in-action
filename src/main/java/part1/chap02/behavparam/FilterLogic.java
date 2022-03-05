@@ -8,6 +8,8 @@ import part1.chap02.behavparam.predicate.AppleRedAndHeavyPredicate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
+import java.util.function.*;
 
 import static part1.chap02.behavparam.Color.GREEN;
 import static part1.chap02.behavparam.Color.RED;
@@ -99,8 +101,6 @@ public class FilterLogic {
 
         List<Apple> redAndLightApplesByLambda = filterApples(inventory,
                 a -> RED.equals(a.getColor()) && a.getWeight() <= 120);
-
-
 
     }
 
