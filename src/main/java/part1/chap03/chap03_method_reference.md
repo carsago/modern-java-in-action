@@ -35,6 +35,7 @@ public class Greeting {
 }
 ```
 ###스태틱 메소드 참조
+
 만약 우리가 string을 밭아서 hi에 붙이는 함수를 만들고 싶다면 다음과 같이 할 수 있다.
 
 ```java
