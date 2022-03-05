@@ -63,6 +63,19 @@ Comparator의 comarping 메소드를 통해 반복되는 부분을 축약할 수
 Comparator<Apple> c = Comparator.comparing(a -> a.getWeight());
 ```
 
+이 부분이 잘 이해가 가지 않는다면 다음 코드를 통해 comparaing 메소드를 살펴보자.
+
+```java
+public static <T, U extends Comparable<? super U>> Comparator<T> comparing(
+        Function<? super T, ? extends U> keyExtractor)
+{
+    Objects.requireNonNull(keyExtractor);
+    return (Comparator<T> & Serializable)
+        (c1, c2) -> keyExtractor.apply(c1).compareTo(keyExtractor.apply(c2));
+}
+```
+
+comparing 메소드를 바탕으로 코드를 축약하자!
 
 ```java
 inventory.sort(comparing(a ->  a.getWeight()));
