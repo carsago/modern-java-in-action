@@ -89,7 +89,9 @@ inventory.sort(comparing(a ->  a.getWeight()));
 inventory.sort(comparing(Apple::getWeight));
 ```
 
-다음 부분을 더욱 공부해보자 
+메소드 참조에 관한 부분은 다음 링크를 통해 공부해보자! 
+
+- https://github.com/carsago/modern-java-in-action/blob/main/src/main/java/part1/chap03/chap03_method_reference.md
 
 
 
